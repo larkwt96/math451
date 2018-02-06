@@ -45,7 +45,7 @@ def run(n):
     elif n == 4: start, end = -.9,8.5
     elif n == 5: start, end = -1.3,12
     elif n == 6: start, end = -1.5,15
-    elif n == 7: start, end = -1, .4
+    elif n == 7: start, end = -1, 20
     elif n == 8: start, end = -1.8,23 
     else: start, end = -5, 5
 

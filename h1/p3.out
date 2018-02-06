@@ -1,0 +1,45 @@
+Estimated eigen values:
+n=2
+    -0.091033
+    2.82235
+n=3
+    -.209392
+    0.00911226
+    5.21679
+n=4
+    -0.358778
+    0.0499652 (multiplicity: 2)
+    8.02046
+n=5
+    -0.505941
+    0.0723875 (mul: 3)
+    11.2052
+n=6
+    -0.620171
+    0.0076199 (mul: 4)
+    14.7159
+n=7
+    -0.92237
+    -0.18424 (mul: 5)
+    18.5416
+n=8
+    -1.18027
+    0.169067 (mul: 6)
+    22.7029
+
+Verification
+n=2
+(1-λ)(sqrt(3)-λ)-2
+λ^2-(1+sqrt(3))λ+sqrt(3)-2
+Using quadratic formula..
+[2.82684, -0.0947876]
+
+n=3
+I will shorthand sqrt(n) as rn: sqrt(5)=r5.
+(1-λ)((r3-λ)(r5-λ)-4)-r2((r2(r5-λ))-r12)+r3(r8-r3(r3-λ))
+Using the cubic formula.. (aka Wolfram Alpha)
+[5.19145
+-0.221018
+-0.002313]
+
+All these eigen values were fairly accurately approximated.
