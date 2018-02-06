@@ -61,7 +61,10 @@ def report(max_sec=60):
                     rdet,
                     rdet-det,
                     (rdet-det)/rdet))
-        n+=1
+        if n>=1000: n+=250
+        elif n>=500: n+=100
+        elif n>=50: n+=50
+        else: n+=1
 
 def test():
     """Testing function"""
