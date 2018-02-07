@@ -1,0 +1,7 @@
+From the previous problem, we can find where all the eigen values should be,
+roughly. Then we can use methods like Newton's method, secant method, or
+bisection method to solve for the exact zeroes.
+
+Complexity:
+
+TODO

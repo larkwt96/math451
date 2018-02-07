@@ -1,0 +1,7 @@
+Algorithm 1:
+Normally, you'd need to get a constant and subdeterminant for every row, but in this case, there are only two rows and two subcases.
+The first subcase is the main diagonal. A constant times the determinant of the
+smaller matrix, a recursive case:
+Complexity of case 1 is the complexity of the n-1 case.
+
+The second subcase is the A_21 times the determinant of the first row and sub columns.

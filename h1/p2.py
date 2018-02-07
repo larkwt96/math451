@@ -54,7 +54,14 @@ def report(max_sec=60):
     s = 0
     while s <= max_sec:
         det,rdet,s = run(n)
-        print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'
+        #print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'
+        #        .format(n,
+        #            s,
+        #            det,
+        #            rdet,
+        #            rdet-det,
+        #            (rdet-det)/rdet))
+        print('{} & {:.2f} & {:.5e} & {:.5e} & {:.5e} & {:.5e} \\\\'
                 .format(n,
                     s,
                     det,
@@ -72,7 +79,9 @@ def test():
     val = det(A)
     val_act = rdet(A)
     n,s=-1,-1
-    print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'.format(n, s, val, val_act, val_act-val, (val_act-val)/val_act))
+    #print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'.format(n, s, val, val_act, val_act-val, (val_act-val)/val_act))
+    print('{} & {:.2f} & {:.5e} & {:.5e} & {:.5e} & {:.5e} \\\\'
+        .format(n, s, det, det_act, det_act-det, (det_act-det)/det_act))
 
 if __name__ == '__main__':
     report(60)

@@ -60,7 +60,9 @@ def report(max_sec=60):
     s = 0
     while s <= max_sec:
         det,det_act,s = run(n)
-        print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'.format(n, s, det, det_act, det_act-det, (det_act-det)/det_act))
+        #print('n={} in {}s: det(A)={} (actual: {}; err: {}; rel err: {})'.format(n, s, det, det_act, det_act-det, (det_act-det)/det_act))
+        print('{} & {:.2f} & {:.5e} & {:.5e} & {:.5e} & {:.5e} \\\\'
+            .format(n, s, det, det_act, det_act-det, (det_act-det)/det_act))
         n+=1
 
 def test():
