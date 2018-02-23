@@ -2,6 +2,7 @@
 
 import numpy as np
 import math
+from methods import pretty_print
 
 def setA(n):
     """Post: An is set and global. n is set and global."""
@@ -104,10 +105,10 @@ def doTest(n):
     setA(n)
     print('Householders for n={}'.format(n))
     print('Before householders transform')
-    print(A)
+    pretty_print(A)
     doHouseholdersTransform()
     print('After householders transform')
-    print(A)
+    pretty_print(A)
 
     sym = isSymmetric()
     if len(sym) > 0:
