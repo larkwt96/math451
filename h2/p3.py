@@ -14,8 +14,12 @@ def getAij(r, c, n):
     return (n+1)/n if r==c else 1/n
 
 
-def err(row, i):
-    return sum(row) - row[i]
+def err(B, i):
+    sum = 0
+    for r in range(len(B)):
+        if r != i:
+            sum += abs(B[i,r])
+    return sum
 
 def run(B, i):
     for i in range(1,10):
@@ -26,9 +30,10 @@ def run(B, i):
     print('Eigen values are \\\\')
     print('$\\lambda = $')
     for i in range(n):
-        print('${}$ with err ${}$,\\\\'.format(B[i,i], err(B[i], i)))
+        print('${}$ with err ${}$,\\\\'.format(B[i,i], err(B, i)))
     eigs,_ = np.linalg.eig(p2.getB(i)[0])
-    print('actual eigen values: ${}$\\\\'.format(eigs))
+    for i in range(len(eigs)):
+        print('actual eigen values: ${}$\\\\'.format(eigs[i]))
 
 
 
@@ -36,5 +41,4 @@ def run(B, i):
 if __name__ == '__main__':
     for i in range(2, 8):
         B,n = p2.getB(i)
-        run(B)
-    for i in range(2, 3):
+        run(B, i)
