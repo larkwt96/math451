@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import math
+from random import uniform
 import numpy as np
 
 def Aij(r, c, n):
@@ -18,7 +20,7 @@ def getA(n):
 
 def lInfNorm(v):
     """L-infinity norm of v"""
-    max = -inf
+    max = -math.inf
     for i in v:
         if abs(i) > max:
             max = abs(i)
@@ -28,9 +30,19 @@ def normalize(v):
     """Return v as unit vector"""
     return v/lInfNorm(v)
 
-def ampFactor(xk, xk_prev):
+def ampFactor(xk, xkPrev):
     """Calculate the amplification factor of x_k and x_k-1"""
-    return lInfNorm(xk)/lInfNorm(xk_prev)
+    return np.float64(lInfNorm(xk)/lInfNorm(xkPrev))
+
+def getRndV(n, lBound=-1, uBound=1):
+    """Return a random initial value for v of size n"""
+    return np.array([uniform(lBound, uBound) for _ in range(n)], dtype=np.float64)
+
+def iteratePowerMethod(A, v, norm=True):
+    vNext = np.squeeze(np.asarray(A.dot(v)))
+    if norm:
+        vNext = normalize(vNext)
+    return vNext
 
 if __name__ == '__main__':
     print(getA(5))
