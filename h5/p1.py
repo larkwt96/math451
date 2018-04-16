@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from fourthOrderRungeKutta import step
+import numpy as np
 
 def T(t, d):
     """
@@ -42,17 +43,35 @@ def F(t, d):
 
 def f(t, x):
     """
-    x1' = x2
-    x2' = F(t)/m(t)
+    x0' = x1
+    x1' = F(t)/m(t)
+
     Args:
         t - Time value
         x - The vector of x
     """
-    x1 = x[1]
-    x2 = F(t, x[0])/m(t, x[0])
-    x[0] = x1
-    x[1] = x2
+    x0 = x[1]
+    x1 = F(t, x[0])/m(t, x[0])
+    x[0] = x0
+    x[1] = x1
     return x
 
-def run(n):
-    pass
+def run(steps, tf, x0):
+    dt = np.float64(tf)/steps
+    n = steps + 1
+    t_arr = np.array([i*dt for i in range(n)], dtype=np.float64)
+    x_arr = [None for _ in range(n)]
+    x_arr[0] = x0
+    for k in range(1, n):
+        x_arr[k] = step(f, dt, t_arr[k-1], x_arr[k-1])
+        if k > 10:
+            break
+    return (t_arr, x_arr)
+
+if __name__ == '__main__':
+    tf = 36000
+    steps = tf*3
+    d0 = 6371000
+    v0 = 0
+    x0 = np.array([d0, v0], dtype=np.float64)
+    (t_arr, x_arr) = run(steps, tf, x0)
