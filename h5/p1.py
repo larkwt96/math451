@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from fourthOrderRungeKutta import step
+
 def T(t, d):
     """
     Args:
@@ -38,30 +40,19 @@ def F(t, d):
     """
     return T(t, d) + G(t, d)
 
-def F1(f, dt, tk1, xk1):
-    return dt * f(tk1, xk1)
-
-def F2(f, dt, tk1, xk1):
-    arg1 = tk1 + dt/2
-    arg2 = xk1 + dt/2*F1(f, dt, tk1, xk1)
-    return dt * f(arg1, arg2)
-
-def F3(f, dt, tk1, xk1):
-    arg1 = tk1 + dt/2
-    arg2 = xk1 + dt/2*F2(f, dt, tk1, xk1)
-    return dt * f(arg1, arg2)
-
-def F4(f, dt, tk1, xk1):
-    arg1 = tk1 + dt
-    arg2 = xk1 + dt*F3(f, dt, tk1, xk1)
-    return dt * f(arg1, arg2)
-
-def step(f, dt, tk1, xk1):
+def f(t, x):
     """
-    Get xk from tk-1 and xk-1
+    x1' = x2
+    x2' = F(t)/m(t)
+    Args:
+        t - Time value
+        x - The vector of x
     """
-    F1val = F1(f, dt, tk1, xk1)
-    F2val = F2(f, dt, tk1, xk1)
-    F3val = F3(f, dt, tk1, xk1)
-    F4val = F4(f, dt, tk1, xk1)
-    return xk1 + 1/6*F1val + 2/6*F2val + 2/6*F3val + 1/6*F4val
+    x1 = x[1]
+    x2 = F(t, x[0])/m(t, x[0])
+    x[0] = x1
+    x[1] = x2
+    return x
+
+def run(n):
+    pass
