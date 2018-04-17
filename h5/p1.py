@@ -54,14 +54,18 @@ def f(t, x):
     x1 = F(t, x[0])/m(t, x[0])
     return np.array([x0, x1], dtype=np.float64)
 
-def run(steps):
+def run(steps=None, dt=None):
     tf = 36000
     d0 = 6371000
     v0 = 0
     x0 = np.array([d0, v0], dtype=np.float64)
 
-    dt = np.float64(tf)/steps
-    n = steps + 1
+    if dt:
+        dt = np.float64(dt)
+        n = int(tf/dt) + 1
+    else:
+        dt = np.float64(tf)/steps
+        n = steps
     tk1 = 0
     tk = tk1
     xk1 = x0
@@ -72,11 +76,15 @@ def run(steps):
 
         tk1 = tk
         xk1 = xk
+    if dt:
+        newdt = tf - tk1
+        tk = tk1 + newdt
+        xk = step(f, newdt, tk1, xk1)
     return (dt, tk, xk)
 
-def report(steps):
-    (dt1, tf1, df1) = run(steps)
-    (dt2, tf2, df2) = run(steps+1)
+def report(steps1, steps2):
+    (dt1, tf1, df1) = run(steps1)
+    (dt2, tf2, df2) = run(steps2)
     err = df1[0] - df2[0]
     rel_err = err / df2[0]
     dt = dt2
@@ -94,5 +102,7 @@ if __name__ == '__main__':
     tf = 36000
     steps = tf
 
-    for k in range(7):
-        report(int(steps*(10**k)))
+    for k in range(3):
+        steps1 = int(steps*(2**(2*k)))
+        steps2 = steps1*2
+        report(steps1, steps2)
