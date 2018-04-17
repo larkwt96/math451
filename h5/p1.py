@@ -54,23 +54,45 @@ def f(t, x):
     x1 = F(t, x[0])/m(t, x[0])
     return np.array([x0, x1], dtype=np.float64)
 
-def run(steps, tf, x0):
-    dt = np.float64(tf)/steps
-    n = steps + 1
-    t_arr = np.array([i*dt for i in range(n)], dtype=np.float64)
-    x_arr = [None for _ in range(n)]
-    x_arr[0] = x0
-    for k in range(1, n):
-        x_arr[k] = step(f, dt, t_arr[k-1], x_arr[k-1])
-    return (t_arr, x_arr)
-
-if __name__ == '__main__':
+def run(steps):
     tf = 36000
     d0 = 6371000
     v0 = 0
-    steps = tf*2
     x0 = np.array([d0, v0], dtype=np.float64)
-    (t_arr, x_arr) = run(steps, tf, x0)
-    df = x_arr[-1][0]
-    err = (x_arr[-1][0] - x_arr[-2][0])/x_arr[-2][0]
-    print("df = {}\nrelative err = {}".format(df, err))
+
+    dt = np.float64(tf)/steps
+    n = steps + 1
+    tk1 = 0
+    tk = tk1
+    xk1 = x0
+    xk = xk1
+    for k in range(1, n):
+        tk = k*dt
+        xk = step(f, dt, tk1, xk1)
+
+        tk1 = tk
+        xk1 = xk
+    return (dt, tk, xk)
+
+def report(steps):
+    (dt1, tf1, df1) = run(steps)
+    (dt2, tf2, df2) = run(steps+1)
+    err = df1[0] - df2[0]
+    rel_err = err / df2[0]
+    dt = dt2
+    df = df2[0]
+
+    print('*'*10)
+    print('dt1: {} tf1: {} df1: {}'.format(dt1, tf1, df1[0]))
+    print('dt2: {} tf2: {} df2: {}'.format(dt2, tf2, df2[0]))
+    print("delta t: {}".format(dt))
+    print("final distance: {}".format(df))
+    print("error: {}".format(err))
+    print("relative error: {}".format(rel_err))
+
+if __name__ == '__main__':
+    tf = 36000
+    steps = tf
+
+    for k in range(7):
+        report(int(steps*(10**k)))
