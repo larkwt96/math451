@@ -13,17 +13,17 @@ def _F1(f, dt, tk1, xk1):
 
 def _F2(f, dt, tk1, xk1):
     arg1 = tk1 + dt/2
-    arg2 = xk1 + dt/2*_F1(f, dt, tk1, xk1)
+    arg2 = xk1 + 1/2*_F1(f, dt, tk1, xk1)
     return dt * f(arg1, arg2)
 
 def _F3(f, dt, tk1, xk1):
     arg1 = tk1 + dt/2
-    arg2 = xk1 + dt/2*_F2(f, dt, tk1, xk1)
+    arg2 = xk1 + 1/2*_F2(f, dt, tk1, xk1)
     return dt * f(arg1, arg2)
 
 def _F4(f, dt, tk1, xk1):
     arg1 = tk1 + dt
-    arg2 = xk1 + dt*_F3(f, dt, tk1, xk1)
+    arg2 = xk1 + 1*_F3(f, dt, tk1, xk1)
     return dt * f(arg1, arg2)
 
 def step(f, dt, tk1, xk1):
