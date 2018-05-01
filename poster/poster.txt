@@ -1,0 +1,8 @@
+Introduction and motivation
+
+I will vary techniques and time steps.
+I will analyize their calculation time and accuracy.
+
+I will start with different start conditions.
+
+Need graphs
