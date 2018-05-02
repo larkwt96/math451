@@ -1,8 +1,42 @@
 Introduction and motivation
 
-I will vary techniques and time steps.
-I will analyize their calculation time and accuracy.
+-~*~- Numerical Analysis -~*~-
+I will use difference in time steps to show Runge-Kutta 4 converges
+I will comment on calculation analysis
+I will comment on the fact that we can't get the exact error but only prove existence
+I will use high Runge-Kutta 4 as the baseline and analyze Runge cutter 2 err
 
+-~*~- Application -~*~-
+I will vary emigration/immigration rate
 I will start with different start conditions.
+I will vary carrying capacity
+    Changes the overall hight of the graph.
+
+Report:
+Total beetles
+Time of calculation
+Final graph
+dt
 
 Need graphs
+
+Left
+    Intro
+    Math and model definitions
+    Fourth Order Runge-Kutta Method
+
+Middle Left
+    Proof of Convergence
+    Time Complexity
+
+Middle Figure
+    Some time graphs
+
+Middle Right
+    Second Order Runge-Kutta Method
+    Error analysis
+
+Right
+    Vary Emigration
+    Vary Initial Conditions
+    Vary Carrying Capacity

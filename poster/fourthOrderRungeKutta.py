@@ -41,5 +41,6 @@ def step(f, dt, tk1, xk1):
     F2val = _F2(f, dt, tk1, xk1)
     F3val = _F3(f, dt, tk1, xk1)
     F4val = _F4(f, dt, tk1, xk1)
+    tk = tk1 + dt
     xk = xk1 + 1/6*F1val + 2/6*F2val + 2/6*F3val + 1/6*F4val
-    return xk
+    return tk, xk
