@@ -1,10 +1,10 @@
 Introduction and motivation
 
 -~*~- Numerical Analysis -~*~-
-I will use difference in time steps to show Runge-Kutta 4 converges
-I will comment on calculation analysis
-I will comment on the fact that we can't get the exact error but only prove existence
-I will use high Runge-Kutta 4 as the baseline and analyze Runge cutter 2 err
+* I will use difference in time steps to show Runge-Kutta 4 converges
+* I will comment on calculation analysis
+* I will comment on the fact that we can't get the exact error but only prove existence
+* I will use high Runge-Kutta 4 as the baseline and analyze Runge cutter 2 err
 
 -~*~- Application -~*~-
 I will vary emigration/immigration rate
